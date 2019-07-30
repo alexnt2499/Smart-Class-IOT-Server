@@ -5,19 +5,24 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server" : "nodemon server"
+    "server": "nodemon server"
   },
   "author": "Thanh Duy",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "config": "^3.2.2",
+    "ejs": "^2.6.2",
     "express": "^4.17.1",
     "express-validator": "^6.1.1",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.3.0-beta2",
     "mongoose": "^5.6.7",
-    "request": "^2.88.0"
+    "qrcode": "^1.4.1",
+    "request": "^2.88.0",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.1",
