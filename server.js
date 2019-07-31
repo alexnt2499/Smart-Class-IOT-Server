@@ -47,7 +47,7 @@ io.on('connection' , async (client) => {
             light3 (Boolean)
         }
     */
-   client.emit('hello','Hello a đạt béo');
+   
     client.on('remode/light', async (data) => { 
 
          await Room.updateOne(
