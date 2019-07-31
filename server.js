@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 var Room = require('./model/Room');
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
+
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -25,10 +27,14 @@ app.use('/api/student', require('./routers/api/student'));
 
 const changeStream = Room.watch();
 
+
 // Listen event when collection room change any value
 changeStream.on('change', async (next) => {
     const room = await Room.find({});
     console.log("Database đã thay đổi ");
+    
+    
+        io.emit('hello','ăn đấm không?');
     
    
     // emit room when change
