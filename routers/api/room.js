@@ -13,17 +13,22 @@ const auth = require('./../../middelware/auth');
 
 router.get('/', async (req,res) => {
     
-    try {
-        
-        
-            const room = await Room.find({});
-            console.log(room);
-            
+    var nameRoom = req.query.nameRoom;
+    if(nameRoom !== null && nameRoom !== undefined)
+    {
+        try {
+            const room = await Room.find({nameRoom});            
             res.json(room);
     
-    } catch (error) {
-        
+        } catch (error) {
+            
+        }
     }
+    else{
+        res.status(404).json({msg : 'Server error'})
+    }
+   
+   
     
 })
 
