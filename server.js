@@ -29,22 +29,21 @@ const changeStream = Room.watch();
 
 
 // Listen event when collection room change any value
-
+changeStream.on('change', async (next) => {
+    const room = await Room.find({});
+    console.log("Database đã thay đổi ");
+    
+    
+       
+    
+   
+    // emit room when change
+     io.emit('changeRoom', room);
+});
 
 // Listen event connection from client
 io.on('connection' , async (client) => {
     
-    changeStream.on('change', async (next) => {
-        const room = await Room.find({});
-        console.log("Database đã thay đổi ");
-        
-        
-           
-        
-       
-        // emit room when change
-        client.emit('hello', room);
-    });
     /* 
         @remode light by Room
         @data : {
@@ -56,7 +55,7 @@ io.on('connection' , async (client) => {
     */
    client.emit('hello','ăn đấm không?');
     client.on('remode/light', async (data) => { 
-
+        client.emit('hello', "Real time ");
          await Room.updateOne(
             {
                 nameRoom : data.nameRoom , 
