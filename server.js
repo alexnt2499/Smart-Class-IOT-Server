@@ -34,7 +34,7 @@ changeStream.on('change', async (next) => {
     console.log("Database đã thay đổi ");
     
     
-        io.emit('hello','ăn đấm không?');
+       
     
    
     // emit room when change
@@ -53,7 +53,7 @@ io.on('connection' , async (client) => {
             light3 (Boolean)
         }
     */
-   
+   client.emit('hello','ăn đấm không?');
     client.on('remode/light', async (data) => { 
 
          await Room.updateOne(
