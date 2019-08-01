@@ -39,6 +39,10 @@ changeStream.on('change', async (next) => {
 // Listen event connection from client
 io.on('connection' , async (client) => {
     
+    io.on('HelloServer' , async (data) => {
+        console.log(data);
+        
+    })
     // get data in room when connect
     const room = await Room.find({});
      client.emit('changeRoom', room);
