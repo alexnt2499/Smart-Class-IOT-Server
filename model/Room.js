@@ -16,6 +16,11 @@ var schema = new mongoose.Schema({
     },
     air_conditioner: {
         type : 'object'
+    },
+    status: {
+        type : 'boolean',
+        default : false,
+        required : true,
     }
 })
 

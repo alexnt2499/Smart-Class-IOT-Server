@@ -5,7 +5,7 @@ var schema = new mongoose.Schema({
         required : true,
         unique : true
     },
-    student : {
+    students : {
         type : 'array',
         required : true
     }

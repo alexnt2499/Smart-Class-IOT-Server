@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
 var schema = new mongoose.Schema(
     { 
+        studentCode: {
+            type :'string',
+            required : true,
+            unique : true
+        },
         name: {
             type :'string',
             required : true,
 
         },
+        
         email: {
             type :'string',
             required : true,

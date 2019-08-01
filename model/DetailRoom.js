@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 var schema = new mongoose.Schema({
-    nameRoom : {
-        type : 'string',
+    room : {
+        type : 'Object',
         required : true,
-        unique : true
+        
     },
-    nameClass : {
-        type : 'string',
+    class : {
+        type : 'Object',
         required : true,
-        unique : true
+      
     },
     slot : {
         type : 'number',
@@ -20,6 +20,6 @@ var schema = new mongoose.Schema({
     }
 })
 
-var Room = mongoose.model('room',schema);
+var Room = mongoose.model('detailroom',schema);
 
 module.exports = Room;
