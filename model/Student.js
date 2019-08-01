@@ -20,10 +20,12 @@ var schema = new mongoose.Schema(
         avatar: {
             type :'string'
         },
-        qrCode : {
-            type :'string',
-            required : true,
-            unique : true
+        class: {
+            type : 'string',
+            required : true
+        },
+        subjects: {
+            type : 'array'
         }
 
     });

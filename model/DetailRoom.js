@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 var schema = new mongoose.Schema({
-    idRoom : {
-        type : 'ObjectId',
+    nameRoom : {
+        type : 'string',
         required : true,
         unique : true
     },
-    idClass : {
-        type : 'ObjectId',
+    nameClass : {
+        type : 'string',
         required : true,
         unique : true
     },
