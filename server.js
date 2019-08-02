@@ -45,6 +45,7 @@ io.on('connection' , async (client) => {
         if(data.role === 'teacher')
         {
             var teacher =  await Teacher.findById(data.id);
+            var userId = teacher.email;
             var name = teacher.name;
             var image = teacher.avatar;
             var nameRoom = room.nameRoom;
@@ -52,7 +53,7 @@ io.on('connection' , async (client) => {
             var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng được đã được bật, chức năng điểm danh đã mở. Chúc một ngày tốt lành';
             console.log(response);
             
-            client.emit('SentDataRead', {fullName: name , response : response , image : image}  );
+            client.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
         }
 
        
