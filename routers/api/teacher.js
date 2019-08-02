@@ -139,7 +139,7 @@ router.post('/checkAuth', async (req,res) => {
         {
             console.log('');
             
-            var isMatch = bcrypt.compare(teacher.password, techerObj.password);
+            var isMatch = await bcrypt.compare(teacher.password, techerObj.password);
             console.log(isMatch);
             if(!isMatch)
             {
