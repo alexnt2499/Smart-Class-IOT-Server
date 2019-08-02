@@ -3,6 +3,7 @@ const ConnectDB = require('./config/db');
 const app = express();
 const bodyParser = require('body-parser');
 var Room = require('./model/Room');
+var Teacher = require('./model/Teacher');
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
@@ -40,9 +41,24 @@ changeStream.on('change', async (next) => {
 io.on('connection' , async (client) => {
     
     client.on('sentScanQR' , async (data) => {
-        console.log(data);
+        var room =await Room.findOne({nameRoom : data.nameRoom});
+        if(data.role === 'teacher')
+        {
+            var teacher =  await Teacher.findById(data.id);
+            var name = teacher.name;
+            var image = teacher.avatar;
+            var nameRoom = room.nameRoom;
+
+            var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng được đã được bật, chức năng điểm danh đã mở. Chúc một ngày tốt lành';
+            console.log(response);
+            
+            client.emit('SentDataRead', {fullName: name , response : response , image : image}  );
+        }
+
+       
         
     })
+   
     // get data in room when connect
     const room = await Room.find({});
      client.emit('changeRoom', room);
