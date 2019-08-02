@@ -39,7 +39,7 @@ changeStream.on('change', async (next) => {
 // Listen event connection from client
 io.on('connection' , async (client) => {
     
-    client.on('HelloServer' , async (data) => {
+    client.on('sentScanQR' , async (data) => {
         console.log(data);
         
     })
