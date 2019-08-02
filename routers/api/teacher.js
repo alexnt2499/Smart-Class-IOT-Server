@@ -132,14 +132,23 @@ router.post('/checkAuth', async (req,res) => {
         res.status(501).json({msg : 'Server error'});
     }
     else{
-        var techerObj = await Teacher.findOne({email : teacher.email , password : teacher.password}).select('-password');;
+        var techerObj = await Teacher.findOne({email : teacher.email });
         if(techerObj)
         {
-            res.status(200).json({teacher : techerObj });
+            var isMatch = bcrypt.compare(teacher.password, techerObj.password);
+            if(!isMatch)
+            {
+                res.status(404).json({msg : 'Sai mật khẩu'});
+            }
+            else
+            {
+                res.status(200).json({teacher : techerObj });
+            }
+           
         }
         else
         {
-            res.status(404).json({msg : 'Sai email hoặc password' });
+            res.status(404).json({msg : 'Email không tồn tại ' });
         }
     }
 })
