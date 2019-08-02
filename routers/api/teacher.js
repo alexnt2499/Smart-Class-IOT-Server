@@ -121,6 +121,8 @@ router.get('/getInfoTeacher',auth, async (req,res) => {
 })
 
 router.post('/checkAuth', async (req,res) => {
+    console.log('/checkAuth');
+    
     var teacher = {
         email : req.body.email,
         password : req.body.password
