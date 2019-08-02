@@ -55,6 +55,10 @@ io.on('connection' , async (client) => {
             
             client.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
         }
+        else{
+            client.emit('SentDataRead',data);
+        }
+        
 
        
         
