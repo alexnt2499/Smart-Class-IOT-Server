@@ -135,7 +135,7 @@ router.post('/checkAuth', async (req,res) => {
     }
     else{
         var techerObj = await Teacher.findOne({email : teacher.email });
-        if(techerObj)
+        if(techerObj !== null)
         {
             var isMatch = bcrypt.compare(teacher.password, techerObj.password);
             if(!isMatch)
