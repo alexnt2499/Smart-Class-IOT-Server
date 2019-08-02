@@ -120,4 +120,28 @@ router.get('/getInfoTeacher',auth, async (req,res) => {
     }
 })
 
+router.post('/checkAuth', async (req,res) => {
+    var teacher = {
+        email : req.body.email,
+        password : req.body.password
+    }
+
+    if(teacher.email !== null && teacher.password !== undefined
+        && teacher.email !== undefined && teacher.password !== undefined)
+    {
+        res.status(501).json({msg : 'Server error'});
+    }
+    else{
+        var techerObj = await Teacher.findOne({email : teacher.email , password : teacher.password}).select('-password');;
+        if(techerObj)
+        {
+            res.status(200).json({teacher : techerObj });
+        }
+        else
+        {
+            res.status(404).json({msg : 'Sai email hoặc password' });
+        }
+    }
+})
+
 module.exports = router;
