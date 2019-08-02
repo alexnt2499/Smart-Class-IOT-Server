@@ -121,13 +121,13 @@ router.get('/getInfoTeacher',auth, async (req,res) => {
 })
 
 router.post('/checkAuth', async (req,res) => {
-    console.log('/checkAuth');
+   
     
     var teacher = {
         email : req.body.email,
         password : req.body.password
     }
-
+    console.log(teacher.email);
     if(teacher.email === null && teacher.password === undefined
         && teacher.email === undefined && teacher.password === undefined)
     {
