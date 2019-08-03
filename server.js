@@ -36,7 +36,10 @@ changeStream.on('change', async (next) => {
     // emit room when change
      io.emit('changeRoom', room);
 });
-
+io.on('SentDataRead', (data)=>{
+    console.log(data);
+    
+})
 // Listen event connection from client
 io.on('connection' , async (client) => {
     /* 
@@ -73,10 +76,7 @@ io.on('connection' , async (client) => {
         
     })
     
-    client.on('SentDataRead', (data)=>{
-        console.log(data);
-        
-    })
+    
 
 
     // get data in room when connect
