@@ -72,7 +72,13 @@ io.on('connection' , async (client) => {
        
         
     })
-   
+    
+    client.on('SentDataRead', (data)=>{
+        console.log(data);
+        
+    })
+
+
     // get data in room when connect
     const room = await Room.find({});
      client.emit('changeRoom', room);
