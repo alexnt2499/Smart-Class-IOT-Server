@@ -47,6 +47,7 @@ io.on('connection' , async (client) => {
         }
     */
     client.on('sentScanQR' , async (data) => {
+        console.log(data);
         var room =await Room.findById(data.nameIdRoom);
         if(data.role === 'teacher')
         {
