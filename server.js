@@ -62,7 +62,7 @@ io.on('connection' , async (client) => {
             client.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
         }
         else{
-            console.log(data);
+            console.log("hello");
             client.emit('SentDataRead',data);
         }
         
