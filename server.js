@@ -58,6 +58,7 @@ io.on('connection' , async (client) => {
 
             var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng đã được bật, chức năng điểm danh đang hoạt động. Chúc một ngày tốt lành';
             console.log(data);
+            console.log(response);
             
             client.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
         }
