@@ -39,23 +39,30 @@ changeStream.on('change', async (next) => {
 
 // Listen event connection from client
 io.on('connection' , async (client) => {
-    
+    /* 
+        data : {
+            idTeacher,
+            nameIdRoom,
+            role
+        }
+    */
     client.on('sentScanQR' , async (data) => {
-        var room =await Room.findOne({nameRoom : data.nameRoom});
+        var room =await Room.findById(data.nameIdRoom);
         if(data.role === 'teacher')
         {
-            var teacher =  await Teacher.findById(data.id);
+            var teacher =  await Teacher.findById(data.idTeacher);
             var userId = teacher.email;
             var name = teacher.name;
             var image = teacher.avatar;
             var nameRoom = room.nameRoom;
 
-            var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng được đã được bật, chức năng điểm danh đã mở. Chúc một ngày tốt lành';
-            console.log(response);
+            var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng đã được bật, chức năng điểm danh đang hoạt động. Chúc một ngày tốt lành';
+            console.log(data);
             
             client.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
         }
         else{
+            console.log(data);
             client.emit('SentDataRead',data);
         }
         
