@@ -14,6 +14,8 @@ const auth = require('./../../middelware/auth');
 router.get('/findRoomById', async (req,res) => {
     
     var idRoom = req.query.idRoom;
+    console.log(idRoom);
+    
     if(idRoom !== null && idRoom !== undefined)
     {
         try {
