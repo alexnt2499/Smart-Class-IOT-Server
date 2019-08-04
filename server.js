@@ -52,6 +52,7 @@ io.on('connection' , async (client) => {
     client.on('sentScanQR' , async (data) => {
        
         var room =await Room.findById(data.nameIdRoom);
+       
         if(data.role === 'teacher')
         {
             var teacher =  await Teacher.findById(data.idTeacher);
@@ -68,8 +69,8 @@ io.on('connection' , async (client) => {
             console.log(response);
         }
         else{
-            console.log("hello");
-            client.emit('SentDataRead',data);
+           
+            io.emit('SentDataRead',data);
         }
         
 
