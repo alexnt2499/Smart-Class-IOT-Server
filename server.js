@@ -64,15 +64,22 @@ io.on('connection' , async (client) => {
                 var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng đã được bật, chức năng điểm danh đang hoạt động. Chúc một ngày tốt lành';
                 console.log(data);
                
-                var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : true});
+                var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : true , idTeacher : teacher._id });
                  io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                 console.log(response);
                 } 
                 else {
                     console.log('hello');
+                   
+                        var teacher =  await Teacher.findById(room.idTeacher);
+                        var userId = teacher.email;
+                        var name = teacher.name;
+                        var image = teacher.avatar;
+                        var nameRoom = room.nameRoom;
+                        var response =  'Phòng đã được kích hoạt bởi giảng viên ' + name;
+                        io.emit('SentDataRead',{fullName: '' , response: response,
+                        image: image, userId : 'none'});
                     
-                    io.emit('SentDataRead',{fullName: '' , response: 'Phòng chưa được kích hoạt hãy quét mã QR để kích hoạt phòng (Chỉ dành cho giảng viên)',
-                    image: 'https://www.bitgab.com/uploads/profile/files/default.png', userId : 'none'});
                 }
         }
        
