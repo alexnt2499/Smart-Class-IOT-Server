@@ -63,7 +63,7 @@ io.on('connection' , async (client) => {
             console.log(data);
            
             var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : true});
-            io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
+            await io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
             console.log(response);
         }
         else if(data.role === 'student'){
@@ -87,10 +87,7 @@ io.on('connection' , async (client) => {
                 io.emit('SentDataRead',{ response : "Chức năng điểm danh chưa được bật, vui lòng chờ giảng viên kích hoạt."});
             }
         }
-        else{
-           
-            io.emit('SentDataRead',data);
-        }
+      
         
 
        
