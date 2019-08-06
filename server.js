@@ -83,9 +83,7 @@ io.on('connection' , async (client) => {
                 io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                 console.log(response);
             }
-            else{
-                io.emit('SentDataRead',{ response : "Chức năng điểm danh chưa được bật, vui lòng chờ giảng viên kích hoạt."});
-            }
+           
         }
         else{
            
