@@ -50,10 +50,11 @@ io.on('connection' , async (client) => {
     client.on('sentScanQR' , async (data) => {
        
         var room =await Room.findById(data.nameIdRoom);
-        if(room.status === false)
-        {
+     
             if(data.role === 'teacher')
             {
+                if(room.status === false)
+                {
                 var teacher =  await Teacher.findById(data.idTeacher);
                 var userId = teacher.email;
                 var name = teacher.name;
@@ -66,14 +67,14 @@ io.on('connection' , async (client) => {
                 var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : true});
                  io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                 console.log(response);
-            }
-            else if(data.role === ''){
-                console.log('hello');
-                
-                io.emit('SentDataRead',data);
-            }
+                } else {
+                    console.log('hello');
+                    
+                    io.emit('SentDataRead',data);
+                }
         }
        
+
         if(data.role === 'student'){
 
             if(room.status)
