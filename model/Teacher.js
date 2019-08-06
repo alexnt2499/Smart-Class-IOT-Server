@@ -29,6 +29,9 @@ var schema = new mongoose.Schema(
         class :{
             type : 'array',
             required : true
+        },
+        idTeacher: {
+            type : 'String'
         }
 
     });

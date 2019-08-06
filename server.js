@@ -65,7 +65,7 @@ io.on('connection' , async (client) => {
                 console.log(data);
                
                 var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : true , idTeacher : data.idTeacher });
-                 io.emit('SentDataRead', {fullName: '' , response : response , image : image, userId : userId}  );
+                 io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                 console.log(response);
                 } 
                 else {
