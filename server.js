@@ -81,10 +81,10 @@ io.on('connection' , async (client) => {
 
             if(room.status)
             {
-                var student =  await Student.findById(data.idTeacher);
-                var userId = student.email;
-                var name = student.name;
-                var image = student.avatar;
+                var teacher =  await Teacher.findById(data.idTeacher);
+                var userId = teacher.email;
+                var name = teacher.name;
+                var image = teacher.avatar;
                 var nameRoom = room.nameRoom;
     
                 var response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
@@ -95,7 +95,9 @@ io.on('connection' , async (client) => {
                
             }
             else{
-                io.emit('SentDataRead', { response : "Chức năng điểm danh chưa được bật, vui lòng chờ giảng viên kích hoạt."});
+                io.emit('SentDataRead',{fullName: '' , response: "Chức năng điểm danh chưa được bật, vui lòng chờ giảng viên kích hoạt.",
+                image: 'https://www.bitgab.com/uploads/profile/files/default.png', userId : ''});
+                
             }
         }
       
