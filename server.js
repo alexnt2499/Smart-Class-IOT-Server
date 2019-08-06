@@ -67,10 +67,12 @@ io.on('connection' , async (client) => {
                 var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : true});
                  io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                 console.log(response);
-                } else {
+                } 
+                else {
                     console.log('hello');
                     
-                    io.emit('SentDataRead',data);
+                    io.emit('SentDataRead',{fullName: '' , response: 'Hãy quét mã QR để điểm danh',
+                    image: 'https://www.bitgab.com/uploads/profile/files/default.png', userId : ''});
                 }
         }
        
