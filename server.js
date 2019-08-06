@@ -77,13 +77,15 @@ io.on('connection' , async (client) => {
                 var nameRoom = room.nameRoom;
     
                 var response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
-                console.log(data);
+               
                
               
                 io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
-                console.log(response);
+               
             }
-           
+            else{
+                io.emit('SentDataRead',{ response : "Chức năng điểm danh chưa được bật, vui lòng chờ giảng viên kích hoạt."});
+            }
         }
         else{
            
