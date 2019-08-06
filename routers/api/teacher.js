@@ -128,8 +128,8 @@ router.post('/checkAuth', async (req,res) => {
         password : req.body.password
     }
     console.log(teacher.email);
-    if(teacher.email === null && teacher.password === undefined
-        && teacher.email === undefined && teacher.password === undefined)
+    if(teacher.email === null || teacher.password === undefined
+        || teacher.email === undefined || teacher.password === undefined)
     {
         res.status(501).json({msg : 'Server error'});
     }
