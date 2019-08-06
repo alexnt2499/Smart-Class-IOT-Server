@@ -71,8 +71,8 @@ io.on('connection' , async (client) => {
                 else {
                     console.log('hello');
                     
-                    io.emit('SentDataRead',{fullName: '' , response: 'Hãy quét mã QR để điểm danh',
-                    image: 'https://www.bitgab.com/uploads/profile/files/default.png', userId : ''});
+                    io.emit('SentDataRead',{fullName: '' , response: 'Phòng chưa được kích hoạt hãy quét mã QR để kích hoạt phòng (Chỉ dành cho giảng viên)',
+                    image: 'https://www.bitgab.com/uploads/profile/files/default.png', userId : 'none'});
                 }
         }
        
@@ -90,13 +90,14 @@ io.on('connection' , async (client) => {
                 var response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
                
                
+              console.log(response);
               
                 io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                
             }
             else{
                 io.emit('SentDataRead',{fullName: '' , response: "Chức năng điểm danh chưa được bật, vui lòng chờ giảng viên kích hoạt.",
-                image: 'https://www.bitgab.com/uploads/profile/files/default.png', userId : ''});
+                image: 'https://www.bitgab.com/uploads/profile/files/default.png', userId : 'none'});
                 
             }
         }
