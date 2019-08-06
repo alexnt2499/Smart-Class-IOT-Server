@@ -67,7 +67,9 @@ io.on('connection' , async (client) => {
                  io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                 console.log(response);
             }
-            else if(data.role !== 'student'){
+            else if(data.role === ''){
+                console.log('hello');
+                
                 io.emit('SentDataRead',data);
             }
         }
