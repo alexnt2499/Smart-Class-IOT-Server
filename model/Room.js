@@ -21,6 +21,9 @@ var schema = new mongoose.Schema({
         type : 'boolean',
         default : false,
         required : true,
+    },
+    idTeacher: {
+        type : 'String'
     }
 })
 

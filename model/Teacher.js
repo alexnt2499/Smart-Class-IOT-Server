@@ -30,9 +30,7 @@ var schema = new mongoose.Schema(
             type : 'array',
             required : true
         },
-        idTeacher: {
-            type : 'String'
-        }
+        
 
     });
 var Teacher = mongoose.model('teachers', schema);
