@@ -63,31 +63,34 @@ io.on('connection' , async (client) => {
             console.log(data);
            
             var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : true});
-            await io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
+             io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
             console.log(response);
         }
-        else if(data.role === 'student'){
+        // else if(data.role === 'student'){
 
-            if(room.status)
-            {
-                var student =  await Student.findById(data.idTeacher);
-                var userId = student.email;
-                var name = student.name;
-                var image = student.avatar;
-                var nameRoom = room.nameRoom;
+        //     if(room.status)
+        //     {
+        //         var student =  await Student.findById(data.idTeacher);
+        //         var userId = student.email;
+        //         var name = student.name;
+        //         var image = student.avatar;
+        //         var nameRoom = room.nameRoom;
     
-                var response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
+        //         var response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
                
                
               
-                io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
+        //         io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                
-            }
-            else{
-                io.emit('SentDataRead',{ response : "Chức năng điểm danh chưa được bật, vui lòng chờ giảng viên kích hoạt."});
-            }
+        //     }
+        //     else{
+        //         io.emit('SentDataRead',{ response : "Chức năng điểm danh chưa được bật, vui lòng chờ giảng viên kích hoạt."});
+        //     }
+        // }
+        else{
+           
+            await io.emit('SentDataRead',data);
         }
-      
         
 
        
