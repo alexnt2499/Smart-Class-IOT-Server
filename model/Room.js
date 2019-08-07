@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var schema = new mongoose.Schema({
     nameRoom : {
-        type : 'string',
+        type : 'number',
         required : true,
         unique : true
     },
