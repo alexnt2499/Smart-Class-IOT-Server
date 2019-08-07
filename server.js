@@ -239,7 +239,9 @@ io.on('connection' , async (client) => {
                 nameRoom : data.nameRoom , 
             },
             {
-                door1 : data.door1
+                door : {
+                    door1 : data.door1
+                }
             }
         )
     })
