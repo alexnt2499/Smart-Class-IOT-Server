@@ -154,7 +154,7 @@ io.on('connection' , async (client) => {
             },
             {
                 light : {
-                    light1 : data.light1,
+                    light1 :  data.status,
                     
                    
                 },
@@ -171,7 +171,7 @@ io.on('connection' , async (client) => {
             {
                 light : {
                    
-                    light2 : data.light2,
+                    light2 : data.status,
                    
                 },
             })
@@ -209,7 +209,7 @@ io.on('connection' , async (client) => {
             },
             {
                 fan : {
-                    fan1 : data.fan1,
+                    fan1 :  data.status,
                 },
             })
             
@@ -301,7 +301,7 @@ io.on('connection' , async (client) => {
             },
             {
                 door : {
-                    door1 : data.door1
+                    door1 :  data.status
                 }
             }
         )
