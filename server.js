@@ -121,6 +121,16 @@ io.on('connection' , async (client) => {
     // get data in room when connect
     const room = await Room.find({});
      io.emit('changeRoom', room);
+
+
+     client.on('getDataRoomRT' , async (data) => {
+        console.log(data);
+        
+        const room = await Room.findOne({nameRoom : data.nameRoom});
+
+        io.emit('sentDataInRoomRT', room);
+    })
+
     /* 
         @remode light by Room
         @data : {
