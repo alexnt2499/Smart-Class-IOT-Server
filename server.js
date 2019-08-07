@@ -139,6 +139,22 @@ io.on('connection' , async (client) => {
             {
                 light : {
                     light1 : data.light1,
+                   
+                   
+                },
+            })
+            console.log(data);  
+    }) 
+
+    client.on('remode/light2', async (data) => { 
+        console.log('Real time light');
+         await Room.updateOne(
+            {
+                nameRoom : data.nameRoom , 
+            },
+            {
+                light : {
+                   
                     light2 : data.light2,
                    
                 },
