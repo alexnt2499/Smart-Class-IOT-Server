@@ -132,6 +132,7 @@ io.on('connection' , async (client) => {
     */
     client.on('remode/light', async (data) => { 
         console.log('Real time light');
+        var room = await Room.findOne({ nameRoom : data.nameRoom});
          await Room.updateOne(
             {
                 nameRoom : data.nameRoom , 
@@ -139,26 +140,27 @@ io.on('connection' , async (client) => {
             {
                 light : {
                     light1 : data.light1,
-                    light2 : data.light2
+                    light2 : room.light.light2
                 },
             })
-            console.log(data);  
+            console.log(data + room.light.light2);  
     }) 
 
     client.on('remode/light2', async (data) => { 
         console.log('Real time light');
+        var room = await Room.findOne({ nameRoom : data.nameRoom});
          await Room.updateOne(
             {
-                nameRoom : data.nameRoom , 
+                nameRoom : data.nameRoom, 
             },
             {
                 light : {
-                    light1 : data.light1,
+                    light1 : room.light.light1,
                     light2 : data.light2,
                    
                 },
             })
-            console.log(data);  
+            console.log(data + room.light.light1);  
     }) 
 
     client.on('remode/Den/den1', async (data) => { 
