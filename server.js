@@ -33,7 +33,7 @@ const changeStream = Room.watch();
 // Listen event when collection room change any value
 changeStream.on('change', async (next) => {
     const room = await Room.find({});
-    console.log(next.fullDocument);
+    console.log(next._id);
     // emit room when change
      io.emit('changeRoom', room);
 });
