@@ -127,11 +127,11 @@ io.on('connection' , async (client) => {
              nameRoom (String),
             light1 (Boolean),
             light2 (Boolean),
-            light3 (Boolean)
+           
         }
     */
     client.on('remode/light', async (data) => { 
-        client.emit('hello', "Real time ");
+        console.log('Real time light');
          await Room.updateOne(
             {
                 nameRoom : data.nameRoom , 
@@ -140,7 +140,7 @@ io.on('connection' , async (client) => {
                 light : {
                     light1 : data.light1,
                     light2 : data.light2,
-                    light3 : data.light3
+                   
                 },
             })
             console.log(data);
@@ -157,6 +157,7 @@ io.on('connection' , async (client) => {
         }
     */
    client.on('remode/fan', async (data) => { 
+    console.log('Real time fan');
     var room = await Room.updateOne(
         {
             nameRoom : data.nameRoom , 
@@ -164,8 +165,6 @@ io.on('connection' , async (client) => {
         {
             fan : {
                 fan1 : data.fan1,
-                fan2 : data.fan2,
-                fan3 : data.fan3
             },
         })
         
@@ -231,6 +230,19 @@ io.on('connection' , async (client) => {
             },
         })
     }) 
+
+    client.on('remode/door' , async (data) => {
+        console.log('Real time door');
+        
+        var room = await Room.updateOne(
+            {
+                nameRoom : data.nameRoom , 
+            },
+            {
+                door1 : data.door1
+            }
+        )
+    })
     
     console.log('Connect DB');
     
