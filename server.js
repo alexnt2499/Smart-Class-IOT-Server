@@ -173,37 +173,24 @@ io.on('connection' , async (client) => {
             console.log(data + room.light.light1);  
     }) 
 
-    client.on('remode/Den/den1', async (data) => { 
+    client.on('remode/lightAll', async (data) => { 
         console.log('Real time light');
+       
          await Room.updateOne(
             {
                 nameRoom : data.nameRoom , 
             },
             {
                 light : {
-                    light1 :  data.status,
-                    
-                   
+                    light1 : data.light1,
+                    light2 : data.light2
                 },
             })
-            console.log(data);  
+            console.log(data + room.light.light2);  
     }) 
 
-    client.on('remode/Den/den2', async (data) => { 
-        console.log('Real time light');
-         await Room.updateOne(
-            {
-                nameRoom : data.nameRoom , 
-            },
-            {
-                light : {
-                   
-                    light2 : data.status,
-                   
-                },
-            })
-            console.log(data);  
-    }) 
+ 
+
 
      /* 
         @remode fan by Room
@@ -228,19 +215,7 @@ io.on('connection' , async (client) => {
         
     }) 
 
-    client.on('remode/Quat/quat1', async (data) => { 
-        console.log('Real time fan');
-        var room = await Room.updateOne(
-            {
-                nameRoom : data.nameRoom , 
-            },
-            {
-                fan : {
-                    fan1 :  data.status,
-                },
-            })
-            
-        }) 
+   
 
      /* 
         @remode fan by air_conditioner
@@ -318,8 +293,7 @@ io.on('connection' , async (client) => {
         )
     })
 
-
-    client.on('remode/Cua/cua' , async (data) => {
+    client.on('remode/' , async (data) => {
         console.log('Real time door');
         
         var room = await Room.updateOne(
@@ -327,12 +301,22 @@ io.on('connection' , async (client) => {
                 nameRoom : data.nameRoom , 
             },
             {
+                light : {
+                    light1 : data.light1,
+                    light2 : data.light2
+                },
+                fan :{
+                    fan1 : data.fan1
+                },
                 door : {
-                    door1 :  data.status
+                    door1 : data.door1
                 }
             }
         )
     })
+
+
+    
 
 
     
