@@ -120,7 +120,7 @@ io.on('connection' , async (client) => {
 
     // get data in room when connect
     const room = await Room.find({});
-     client.emit('changeRoom', room);
+     io.emit('changeRoom', room);
     /* 
         @remode light by Room
         @data : {
