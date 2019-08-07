@@ -33,7 +33,7 @@ const changeStream = Room.watch();
 // Listen event when collection room change any value
 changeStream.on('change', async (next) => {
     const room = await Room.find({});
-    console.log(next.fullDocument);
+    
     // emit room when change
      io.emit('changeRoom', room);
 });
@@ -143,8 +143,39 @@ io.on('connection' , async (client) => {
                    
                 },
             })
-            console.log(data);
-            
+            console.log(data);  
+    }) 
+
+    client.on('remode/light/light1', async (data) => { 
+        console.log('Real time light');
+         await Room.updateOne(
+            {
+                nameRoom : data.nameRoom , 
+            },
+            {
+                light : {
+                    light1 : data.light1,
+                    
+                   
+                },
+            })
+            console.log(data);  
+    }) 
+
+    client.on('remode/light/light2', async (data) => { 
+        console.log('Real time light');
+         await Room.updateOne(
+            {
+                nameRoom : data.nameRoom , 
+            },
+            {
+                light : {
+                   
+                    light2 : data.light2,
+                   
+                },
+            })
+            console.log(data);  
     }) 
 
      /* 
@@ -169,6 +200,20 @@ io.on('connection' , async (client) => {
         })
         
     }) 
+
+    client.on('remode/fan/fan1', async (data) => { 
+        console.log('Real time fan');
+        var room = await Room.updateOne(
+            {
+                nameRoom : data.nameRoom , 
+            },
+            {
+                fan : {
+                    fan1 : data.fan1,
+                },
+            })
+            
+        }) 
 
      /* 
         @remode fan by air_conditioner
@@ -245,6 +290,24 @@ io.on('connection' , async (client) => {
             }
         )
     })
+
+
+    client.on('remode/door/door1' , async (data) => {
+        console.log('Real time door');
+        
+        var room = await Room.updateOne(
+            {
+                nameRoom : data.nameRoom , 
+            },
+            {
+                door : {
+                    door1 : data.door1
+                }
+            }
+        )
+    })
+
+
     
     console.log('Connect DB');
     
