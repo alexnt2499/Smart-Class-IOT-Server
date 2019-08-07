@@ -146,7 +146,7 @@ io.on('connection' , async (client) => {
             console.log(data);  
     }) 
 
-    client.on('remode/light/light1', async (data) => { 
+    client.on('remode/Den/den1', async (data) => { 
         console.log('Real time light');
          await Room.updateOne(
             {
@@ -162,7 +162,7 @@ io.on('connection' , async (client) => {
             console.log(data);  
     }) 
 
-    client.on('remode/light/light2', async (data) => { 
+    client.on('remode/Den/den2', async (data) => { 
         console.log('Real time light');
          await Room.updateOne(
             {
@@ -201,7 +201,7 @@ io.on('connection' , async (client) => {
         
     }) 
 
-    client.on('remode/fan/fan1', async (data) => { 
+    client.on('remode/Quat/quat1', async (data) => { 
         console.log('Real time fan');
         var room = await Room.updateOne(
             {
@@ -292,7 +292,7 @@ io.on('connection' , async (client) => {
     })
 
 
-    client.on('remode/door/door1' , async (data) => {
+    client.on('remode/Cua/cua' , async (data) => {
         console.log('Real time door');
         
         var room = await Room.updateOne(
