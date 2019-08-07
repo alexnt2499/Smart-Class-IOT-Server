@@ -139,8 +139,7 @@ io.on('connection' , async (client) => {
             {
                 light : {
                     light1 : data.light1,
-                   
-                   
+                    light2 : data.light2
                 },
             })
             console.log(data);  
@@ -154,7 +153,7 @@ io.on('connection' , async (client) => {
             },
             {
                 light : {
-                   
+                    light1 : data.light1,
                     light2 : data.light2,
                    
                 },
