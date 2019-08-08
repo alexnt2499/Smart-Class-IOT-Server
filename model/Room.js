@@ -24,6 +24,9 @@ var schema = new mongoose.Schema({
     },
     idTeacher: {
         type : 'String'
+    },
+    alert: {
+        type : 'string'
     }
 })
 
