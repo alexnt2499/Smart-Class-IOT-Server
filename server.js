@@ -127,7 +127,8 @@ io.on('connection' , async (client) => {
         console.log(data);
         
         const room = await Room.findOne({nameRoom : data.nameRoom});
-
+        console.log(room);
+        
         io.emit('sentDataInRoomRT', room);
     })
 
