@@ -129,7 +129,7 @@ io.on('connection' , async (client) => {
         const room = await Room.findOne({nameRoom : data.nameRoom});
         console.log(room);
         
-        io.emit('sentDataInRoomRT', room);
+        io.emit('sentDataInRoomRT' + data.nameRoom , room);
     })
 
     /* 
