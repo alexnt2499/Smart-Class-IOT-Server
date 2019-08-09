@@ -318,7 +318,7 @@ io.on('connection' , async (client) => {
 
 
     
-    client.on('alert-204', (data) => {
+    client.on('alert-202', (data) => {
         console.log(data);
         
         io.emit('alertSent', data );
