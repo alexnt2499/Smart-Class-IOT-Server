@@ -62,7 +62,7 @@ io.on('connection' , async (client) => {
                 var nameRoom = room.nameRoom;
     
                 var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng đã được bật, chức năng điểm danh đang hoạt động. Chúc một ngày tốt lành';
-                console.log(data);
+                console.log(room.status);
                
                 var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : data.status , idTeacher : data.idTeacher });
                  io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
