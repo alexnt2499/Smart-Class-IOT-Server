@@ -64,9 +64,10 @@ io.on('connection' , async (client) => {
                 var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng đã được bật, chức năng điểm danh đang hoạt động. Chúc một ngày tốt lành';
                 console.log(data);
                
-                var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : true , idTeacher : data.idTeacher });
+                var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : data.status , idTeacher : data.idTeacher });
                  io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                 console.log(response);
+
                 } 
                 else {
                     console.log('hello');
