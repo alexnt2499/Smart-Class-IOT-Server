@@ -129,7 +129,7 @@ io.on('connection' , async (client) => {
                 var image = teacher.avatar;
                 var nameRoom = room.nameRoom;
 
-                var classes = await Class.find({nameClass : teacher.class});
+                var classes = await Class.findOne({nameClass : teacher.class});
                 var check = false;
 
                 diemDanh = classes.students;
