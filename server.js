@@ -162,7 +162,7 @@ io.on('connection' , async (client) => {
                 }
                 else if(check === 0)
                 {
-                    response = 'Bạn đã điểm danh rồi xin hãy vào lớp';
+                    response = 'Xin chào ' + name +' bạn đã điểm danh rồi xin hãy vào lớp';
 
                 }
                 else {
