@@ -132,7 +132,7 @@ io.on('connection' , async (client) => {
                 var classes = await Class.findOne({nameClass : teacher.class});
                 var check = false;
 
-                diemDanh = classes.students;
+                diemDanh = classes.students.map((value) =>  value);
                 console.log(classes.students)
                 for(var i = 0; i < classes.students.length;i++)
                 {
@@ -142,6 +142,8 @@ io.on('connection' , async (client) => {
                         check = true;
                     }
                 }
+                console.log(diemDanh);
+                
 
                 Class.updateOne({nameClass : teacher.class},{students : diemDanh});
 
