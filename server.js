@@ -128,8 +128,7 @@ io.on('connection' , async (client) => {
                 var image = teacher.avatar;
                 var nameRoom = room.nameRoom;
 
-                if(teacher.class !== "PT14203")
-                {
+              
                 var classes = await Class.findOne({nameClass : "PT14203"});
                 
                 var check = -1;
@@ -182,7 +181,7 @@ io.on('connection' , async (client) => {
                 image: 'https://www.bitgab.com/uploads/profile/files/default.png', userId : 'none'});
                 
             }
-        }
+        
       
         
 
