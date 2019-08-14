@@ -121,25 +121,34 @@ io.on('connection' , async (client) => {
 
         if(data.role === 'student'){
 
-            if(room.status)
-            {
+           
                 var teacher =  await Teacher.findById(data.idTeacher);
                 var userId = teacher.email;
                 var name = teacher.name;
                 var image = teacher.avatar;
                 var nameRoom = room.nameRoom;
 
-                var classes = await Class.findOne({nameClass : teacher.class});
-                var check = false;
-
+                if(teacher.class !== "PT14203")
+                {
+                var classes = await Class.findOne({nameClass : "PT14203"});
+                
+                var check = -1;
+                    var response = "";
                 diemDanh = classes.students.map((value) =>  value);
                 console.log(classes.students)
+                
                 for(var i = 0; i < classes.students.length;i++)
                 {
                     if( classes.students[i]._id === data.idTeacher)
                     {
-                        diemDanh[i].status = true;
-                        check = true;
+                        if(classes.students[i].status === true)
+                        {
+                            check = 0;
+                        }
+                        else {
+                            check = 1;
+                        }
+                       
                     }
                 }
                 console.log(diemDanh);
@@ -147,17 +156,21 @@ io.on('connection' , async (client) => {
 
                 await Class.updateOne({nameClass : teacher.class},{students : diemDanh});
 
-                if(check === true)
+                if(check === 1)
                 {
                     
-                    var response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
+                    response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
+                }
+                else if(check === 0)
+                {
+                    response = 'Bạn đã điểm danh rồi xin hãy vào lớp';
+
                 }
                 else {
-                    var response = 'Hôm nay bạn không có tiết trong lớp này, vui lòng xem lại thời khóa biểu.';
+                    response = 'Hôm nay bạn không có tiết trong lớp này, vui lòng xem lại thời khóa biểu.';
                 }
     
-                
-               
+       
                
               console.log(response);
               
