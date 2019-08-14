@@ -145,7 +145,7 @@ io.on('connection' , async (client) => {
                 console.log(diemDanh);
                 
 
-                Class.updateOne({nameClass : teacher.class},{students : diemDanh});
+                await Class.updateOne({nameClass : teacher.class},{students : diemDanh});
 
                 if(check === true)
                 {
