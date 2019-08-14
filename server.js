@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 var Room = require('./model/Room');
 var Student = require('./model/Student');
 var Teacher = require('./model/Teacher');
+var Class = require('./model/Class');
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
@@ -127,8 +128,33 @@ io.on('connection' , async (client) => {
                 var name = teacher.name;
                 var image = teacher.avatar;
                 var nameRoom = room.nameRoom;
+
+                var classes = await Class.find({nameClass : teacher.class});
+                var check = false;
+
+                diemDanh = classes.students;
+
+                for(var i = 0; i < classes.students.length;i++)
+                {
+                    if( classes.students[i]._id === data.idTeacher)
+                    {
+                        diemDanh[i].status = true;
+                        check = true;
+                    }
+                }
+
+                Class.updateOne({nameClass : teacher.class},{students : diemDanh});
+
+                if(check === true)
+                {
+                    
+                    var response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
+                }
+                else {
+                    var response = 'Hôm nay bạn không có tiết trong lớp này, vui lòng xem lại thời khóa biểu.';
+                }
     
-                var response = 'Xin chào bạn ' + name +' bạn đã điểm danh thành công, chúc bạn học tốt';
+                
                
                
               console.log(response);

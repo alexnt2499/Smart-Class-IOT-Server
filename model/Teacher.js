@@ -27,8 +27,8 @@ var schema = new mongoose.Schema(
 
         },
         class :{
-            type : 'array',
-            required : true
+            type : 'string',
+        
         },
         
 
