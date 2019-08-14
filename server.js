@@ -40,6 +40,26 @@ changeStream.on('change', async (next) => {
 
 // Listen event connection from client
 io.on('connection' , async (client) => {
+
+    client.on('changeRoomRemode' , async (data) => {
+        var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{
+            status : false , 
+            idTeacher : "",
+            light: {
+                light1 : false,
+                light2: false
+            },
+            fan : {
+                fan1 : false
+            },
+            door: {
+                door1 :false
+            }
+        });
+
+        console.log(roomUpdate);
+        
+    })
     /* 
         data : {
             idTeacher,
@@ -64,7 +84,20 @@ io.on('connection' , async (client) => {
                 var response = 'Xin chào thầy ' + name + 'phòng ' + nameRoom +'đã mở, hệ thống trong phòng đã được bật, chức năng điểm danh đang hoạt động. Chúc một ngày tốt lành';
                 console.log(room.status);
                
-                var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{status : data.status , idTeacher : data.idTeacher });
+                var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{
+                    status : data.status , 
+                    idTeacher : data.idTeacher,
+                    light: {
+                        light1 : true,
+                        light2: true
+                    },
+                    fan : {
+                        fan1 : true
+                    },
+                    door: {
+                        door1 :true
+                    }
+                });
                  io.emit('SentDataRead', {fullName: name , response : response , image : image, userId : userId}  );
                 console.log(response);
 
