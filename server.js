@@ -133,7 +133,7 @@ io.on('connection' , async (client) => {
                 var check = false;
 
                 diemDanh = classes.students;
-
+                console.log(classes)
                 for(var i = 0; i < classes.students.length;i++)
                 {
                     if( classes.students[i]._id === data.idTeacher)
