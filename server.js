@@ -58,6 +58,14 @@ io.on('connection' , async (client) => {
             }
         });
 
+        var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{
+            
+            status : false,
+           
+        });
+
+
+
         console.log(roomUpdate);
         
     })
