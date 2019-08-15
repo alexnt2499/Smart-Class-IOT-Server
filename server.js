@@ -44,7 +44,7 @@ io.on('connection' , async (client) => {
 
     client.on('changeRoomRemode' , async (data) => {
         var roomUpdate =await Room.findByIdAndUpdate(data.nameIdRoom,{
-            status : false , 
+            
             idTeacher : "",
             light: {
                 light1 : false,
@@ -394,8 +394,13 @@ io.on('connection' , async (client) => {
     
     client.on('alert-202', (data) => {
         console.log(data);
+        var qrwelcome = {
+            fullName: '',
+            response: 'Không được vào khu vực cấm',
+            image: 'https://www.bitgab.com/uploads/profile/files/default.png'
+          }
         
-        io.emit('alertSent', data );
+        io.emit('SentDataRead', qrwelcome );
     })
 
     
